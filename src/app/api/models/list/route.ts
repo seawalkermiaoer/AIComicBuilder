@@ -105,6 +105,16 @@ export async function POST(request: Request) {
       });
     }
 
+    if (body.protocol === "happyhorse") {
+      return NextResponse.json({
+        models: [
+          { id: "happyhorse-1.0", name: "HappyHorse 1.0 首帧图生视频" },
+          { id: "happyhorse-1.0-r2v", name: "HappyHorse 1.0 参考生视频" },
+          { id: "happyhorse-1.0-t2v", name: "HappyHorse 1.0 文生视频" },
+        ],
+      });
+    }
+
     if (body.protocol === "dashscope") {
       return NextResponse.json({
         models: [

@@ -2,6 +2,7 @@ import { setDefaultAIProvider, setDefaultVideoProvider } from "./index";
 import { OpenAIProvider } from "./providers/openai";
 import { GeminiProvider } from "./providers/gemini";
 import { SeedanceProvider } from "./providers/seedance";
+import { HappyHorseProvider } from "./providers/happyhorse";
 
 let initialized = false;
 
@@ -24,6 +25,13 @@ export function initializeProviders() {
     setDefaultVideoProvider(
       new SeedanceProvider(),
       (uploadDir) => new SeedanceProvider({ ...(uploadDir && { uploadDir }) }),
+    );
+  }
+
+  if (process.env.HAPPYHORSE_API_KEY || process.env.DASHSCOPE_API_KEY) {
+    setDefaultVideoProvider(
+      new HappyHorseProvider(),
+      (uploadDir) => new HappyHorseProvider({ ...(uploadDir && { uploadDir }) }),
     );
   }
 

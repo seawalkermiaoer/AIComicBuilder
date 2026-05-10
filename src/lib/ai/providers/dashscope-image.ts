@@ -50,8 +50,8 @@ function resolveSize(
   size?: string,
   aspectRatio?: string,
 ): string | undefined {
-  // If explicit size is given, pass through (caller knows best)
-  if (size) return size;
+  // If explicit size is given, normalize 'x' separator to '*' for DashScope
+  if (size) return size.replace("x", "*");
 
   if (aspectRatio) {
     switch (family) {
