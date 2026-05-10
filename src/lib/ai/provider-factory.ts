@@ -86,6 +86,15 @@ export function createVideoProvider(config: ProviderConfig, uploadDir?: string):
         ...(uploadDir && { uploadDir }),
       });
     case "wan":
+      // HappyHorse shares the wan protocol — detect by model ID prefix
+      if (config.modelId.startsWith("happyhorse")) {
+        return new HappyHorseProvider({
+          apiKey: config.apiKey,
+          baseUrl: config.baseUrl,
+          model: config.modelId,
+          ...(uploadDir && { uploadDir }),
+        });
+      }
       return new WanVideoProvider({
         apiKey: config.apiKey,
         baseUrl: config.baseUrl,
@@ -94,13 +103,6 @@ export function createVideoProvider(config: ProviderConfig, uploadDir?: string):
       });
     case "ucloud-seedance":
       return new UCloudSeedanceProvider({
-        apiKey: config.apiKey,
-        baseUrl: config.baseUrl,
-        model: config.modelId,
-        ...(uploadDir && { uploadDir }),
-      });
-    case "happyhorse":
-      return new HappyHorseProvider({
         apiKey: config.apiKey,
         baseUrl: config.baseUrl,
         model: config.modelId,

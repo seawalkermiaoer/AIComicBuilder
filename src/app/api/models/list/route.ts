@@ -94,6 +94,7 @@ export async function POST(request: Request) {
     if (body.protocol === "wan") {
       return NextResponse.json({
         models: [
+          // Wan models
           { id: "wan2.7-t2v", name: "Wan 2.7 文生视频" },
           { id: "wan2.7-r2v", name: "Wan 2.7 参考生视频" },
           { id: "wan2.6-t2v", name: "Wan 2.6 文生视频" },
@@ -101,13 +102,7 @@ export async function POST(request: Request) {
           { id: "wan2.6-i2v", name: "Wan 2.6 图生视频" },
           { id: "wan2.6-r2v", name: "Wan 2.6 参考生视频" },
           { id: "wan2.6-r2v-flash", name: "Wan 2.6 参考生视频 Flash" },
-        ],
-      });
-    }
-
-    if (body.protocol === "happyhorse") {
-      return NextResponse.json({
-        models: [
+          // HappyHorse models
           { id: "happyhorse-1.0", name: "HappyHorse 1.0 首帧图生视频" },
           { id: "happyhorse-1.0-r2v", name: "HappyHorse 1.0 参考生视频" },
           { id: "happyhorse-1.0-t2v", name: "HappyHorse 1.0 文生视频" },
